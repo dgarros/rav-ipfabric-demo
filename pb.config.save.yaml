@@ -1,0 +1,15 @@
+# This task gets all Junos configuration from all devices
+- name: Get configuration
+  hosts: junos
+  connection: local
+  gather_facts: no
+  roles:
+    - Juniper.junos
+  tasks:
+    - name: Getting config ... please wait
+      junos_get_config:
+        host: "{{ ansible_ssh_host }}"
+        port: "{{ ansible_ssh_port }}"
+        user: root
+        passwd: "{{ ansible_ssh_password }}"
+        dest: "{{ inventory_hostname }}.conf"

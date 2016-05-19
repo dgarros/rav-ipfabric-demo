@@ -1,0 +1,19 @@
+---
+- name: Gather device facts
+  hosts: junos
+  connection: local
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: /usr/local/bin/python
+  roles:
+    - Juniper.junos
+  tasks:
+    - name: "Gather Facts"
+      junos_get_facts:
+        host: "{{ junos_host }}"
+        port: "{{ junos_port }}"
+        user: "{{ ansible_ssh_username }}"
+        passwd: "{{ ansible_ssh_password }}"
+      register: facts
+
+  #  - debug: var=facts

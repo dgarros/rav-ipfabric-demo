@@ -1,0 +1,19 @@
+---
+- name: Check fabric connectivity
+  hosts: junos
+  connection: local
+  gather_facts: no
+  roles:
+    - Juniper.junos
+  tasks:
+    - name: "Ping underlay peer"
+      with_items: "{{ underlay.neighbors }}"
+      junos_ping:
+        host: "{{ junos_host }}"
+        port: "{{ junos_port }}"
+        user: root
+        passwd: "{{ ansible_ssh_password }}"
+        dest_ip: "{{ item.peer_ip }}"
+        source_ip: "{{ item.local_ip }}"
+        interface: "{{ item.interface }}"
+        ttl: 1

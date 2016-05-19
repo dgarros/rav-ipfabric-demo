@@ -1,0 +1,88 @@
+
+system {
+    host-name {{ inventory_hostname }};
+    root-authentication {
+        encrypted-password "$1$ZUlES4dp$OUwWo1g7cLoV/aMWpHUnC/";
+    }
+    services {
+        ssh {
+            root-login allow;
+        }
+        netconf {
+            ssh;
+        }
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+    time-zone {{ global.time_zone }};
+    name-server {
+{% for name_server in global.name_servers %}
+        {{ name_server }};
+{% endfor %}
+    }
+    ntp {
+{% for ntp_server in global.ntp_servers %}
+        server {{ ntp_server }};
+{% endfor %}
+    }
+}
+interfaces {
+    em0 {
+        unit 0 {
+            family inet {
+                address {{ mgmt_ip }}/24;
+            }
+        }
+    }
+    em1 {
+        unit 0 {
+            family inet {
+                address 169.254.0.2/24;
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address {{ loopback_ip }}/32;
+            }
+        }
+    }
+}
+snmp {
+    location "{{ global.snmp.location }}";
+    contact "{{ global.snmp.contact }}";
+{% for snmp in global.snmp.polling %}
+    community {{ snmp.community }} {
+        authorization read-only;
+    }
+{% endfor %}
+}
+routing-options {
+{% if global.routes.static is defined %}
+  static {
+{% for route, next_hop in global.routes.static.iteritems() %}
+    route {{ route }} {
+      next-hop {{ next_hop }};
+      retain;
+      no-readvertise;
+    }
+{% endfor %}
+  }
+{% endif %}
+}
+protocols {
+    lldp {
+        interface all;
+    }
+}

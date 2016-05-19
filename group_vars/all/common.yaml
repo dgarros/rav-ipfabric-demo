@@ -1,0 +1,24 @@
+# System variable used to define temporary directory
+# please update tmp_dir variable if needed
+tmp_dir: /tmp/build
+build_dir: "{{ tmp_dir }}/{{ inventory_hostname }}/tmp"
+junos_conf: "config/{{ inventory_hostname }}.conf"
+
+underlay:
+  mtu_phy_int: 1600
+  mtu_logical_int: 1500
+
+global:
+  time_zone: America/Los_Angeles
+  name_servers:
+  - 8.8.8.8
+  ntp_servers:
+  - 199.19.167.36
+  snmp:
+    location: "Ravello"
+    contact: John Doe
+    polling:
+    - community: public
+  routes:
+    static:
+      0/0: 10.0.0.254

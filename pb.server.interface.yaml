@@ -1,0 +1,23 @@
+---
+- hosts: server
+  # become: true
+  # become_user: ubuntu
+
+  # roles:
+  # - role: dresden-weekly.network-interfaces
+  #   network_manage_devices: no
+  #
+  #   network_interfaces:
+  #   - device: eth1
+  #     description: just a description for humans to understand
+  #     auto: true
+  #     family: inet
+  #     method: static
+  #     address: "{{ mgmt_ip }}"
+  #     network: "{{ mgmt_network }}"
+  #     netmask: "{{ mgmt_mask }}"
+  #     #gateway: "{{ mgmt_gateway }}"
+  tasks:
+  # - name: try nmcli add team - cname only & ip4 gw4
+  #   nmcli: type=ethernet cname=eth1 ip4={{mgmt_ip}} gw4={{mgmt_gateway}} state=present
+  - command: route add -net 100.0.0.0 netmask 255.255.0.0 gw {{ default_gw }}
