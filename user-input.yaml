@@ -1,0 +1,38 @@
+
+topology:
+  leaf1:
+    - dhcp-public
+    - "{{ ravlinks.91 }}"
+    - null
+    - "{{ ravlinks.11 }}"
+    - "{{ ravlinks.12 }}"
+
+  leaf2:
+    - dhcp-public
+    - "{{ ravlinks.92 }}"
+    - null
+    - "{{ ravlinks.13 }}"
+    - "{{ ravlinks.14 }}"
+
+  leaf3:
+    - dhcp-public
+    - "{{ ravlinks.93 }}"
+    - null
+    - "{{ ravlinks.15 }}"
+    - "{{ ravlinks.16 }}"
+
+  spine1:
+    - dhcp-public
+    - "{{ ravlinks.94 }}"
+    - null
+    - "{{ ravlinks.11 }}"
+    - "{{ ravlinks.13 }}"
+    - "{{ ravlinks.15 }}"
+
+  spine2:
+    - dhcp-public
+    - "{{ ravlinks.95 }}"
+    - null
+    - "{{ ravlinks.12 }}"
+    - "{{ ravlinks.14 }}"
+    - "{{ ravlinks.16 }}"

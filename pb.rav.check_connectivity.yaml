@@ -1,0 +1,17 @@
+---
+- name: Create Application on Ravello
+  connection: local
+  hosts: junos
+  gather_facts: no
+  vars:
+    ravello:
+      app_desc: "Description"
+      app_name: "IP Fabric 2S-3L 1234"
+  roles:
+    - ravello.lib
+    - ravello.check_connectivity
+  pre_tasks:
+    - include_vars: user-input.yaml
+  tasks:
+    - name: Check ssh connectivity (2)
+      wait_for: host={{ ravello_public_ip.json.value }} port=22 timeout=5
