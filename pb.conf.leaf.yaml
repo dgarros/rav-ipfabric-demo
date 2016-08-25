@@ -1,5 +1,5 @@
 ---
-- name: Create and apply configuration for Fabric
+- name: Create configuration for Leaf Devices
   hosts: leaf
   connection: local
   gather_facts: no
