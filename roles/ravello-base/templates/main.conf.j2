@@ -2,7 +2,7 @@
 system {
     host-name {{ inventory_hostname }};
     root-authentication {
-        encrypted-password "$1$ZUlES4dp$OUwWo1g7cLoV/aMWpHUnC/";
+        encrypted-password "$1$Dkb4BkC8$GCjPFT.M7BySAEPCbcbxz1";
     }
     services {
         ssh {
@@ -40,7 +40,7 @@ interfaces {
     em0 {
         unit 0 {
             family inet {
-                address {{ mgmt_ip }}/24;
+                dhcp;
             }
         }
     }
