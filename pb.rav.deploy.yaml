@@ -1,11 +1,8 @@
 ---
 - name: Deploy Application on Ravello
   connection: local
-  hosts: junos
+  hosts: all
   gather_facts: no
-  vars:
-    ravello:
-      app_name: "IP Fabric 2S-3L 1234"
   roles:
     - ravello.lib
     - ravello.deploy_topology

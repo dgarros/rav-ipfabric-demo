@@ -1,12 +1,8 @@
 ---
 - name: Create Application on Ravello
   connection: local
-  hosts: junos
+  hosts: junos,server
   gather_facts: no
-  vars:
-    ravello:
-      app_desc: "Description"
-      app_name: "IP Fabric 2S-3L 1234"
   roles:
     - ravello.lib
     - ravello.create_topology

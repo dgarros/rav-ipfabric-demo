@@ -1,38 +1,59 @@
 
+ravello:
+  app_name: "IP Fabric 2S-3L 1266"
+
 topology:
   leaf1:
-    - dhcp-public
-    - "{{ ravlinks.91 }}"
+    - link: dhcp-public
+    - link: 91
     - null
-    - "{{ ravlinks.11 }}"
-    - "{{ ravlinks.12 }}"
+    - link: 11
+    - link: 12
+    - link: 31
 
   leaf2:
-    - dhcp-public
-    - "{{ ravlinks.92 }}"
+    - link: dhcp-public
+    - link: 92
     - null
-    - "{{ ravlinks.13 }}"
-    - "{{ ravlinks.14 }}"
+    - link: 13
+    - link: 14
+    - link: 32
 
   leaf3:
-    - dhcp-public
-    - "{{ ravlinks.93 }}"
+    - link: dhcp-public
+    - link: 93
     - null
-    - "{{ ravlinks.15 }}"
-    - "{{ ravlinks.16 }}"
+    - link: 15
+    - link: 16
+    - link: 33
 
   spine1:
-    - dhcp-public
-    - "{{ ravlinks.94 }}"
+    - link: dhcp-public
+    - link: 94
     - null
-    - "{{ ravlinks.11 }}"
-    - "{{ ravlinks.13 }}"
-    - "{{ ravlinks.15 }}"
+    - link: 11
+    - link: 13
+    - link: 15
 
   spine2:
-    - dhcp-public
-    - "{{ ravlinks.95 }}"
+    - link: dhcp-public
+    - link: 95
     - null
-    - "{{ ravlinks.12 }}"
-    - "{{ ravlinks.14 }}"
-    - "{{ ravlinks.16 }}"
+    - link: 12
+    - link: 14
+    - link: 16
+
+  server1:
+    - link: dhcp-public
+    - link: 31
+    - link: 1
+
+  server2:
+    - link: dhcp-public
+    - link: 32
+    - link: 1
+
+  server3:
+    - link: dhcp-public
+    - link: 33
+    - link: 1

@@ -8,15 +8,10 @@
   gather_facts: no
   roles:
     - Juniper.junos
-    - ravello.lib
-    - ravello.check_connectivity
-  vars:
-    ravello:
-      app_name: "IP Fabric 2S-3L 1234"
   tasks:
     - name: Pushing config ... please wait
       junos_install_config:
-        host: "{{ ravello_public_ip.json.value }}"
+        host: "{{ junos_host }}"
         port: "{{ junos_port }}"
         user: "{{ ansible_ssh_username }}"
         passwd: "{{ ansible_ssh_password }}"

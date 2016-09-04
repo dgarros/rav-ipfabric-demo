@@ -7,16 +7,12 @@
   #   - include_vars: "{{ topology_file }}"
   vars:
     credential:
-      host: "{{ ravello_public_ip.json.value }}"
+      host: "{{ junos_host }}"
       port: "{{ netconf_port }}"
       username: "{{ ansible_ssh_username }}"
       password: "{{ ansible_ssh_password }}"
-    ravello:
-      app_name: "IP Fabric 2S-3L 1234"
   roles:
     - Juniper.junos
-    - ravello.lib
-    - ravello.check_connectivity
   tasks:
 ##################################################################
 ## Check Connectivity between Underlay peers
@@ -25,7 +21,7 @@
 ##################################################################
     - name: "Check Connectivity using Ping (galaxy/junos_ping)"
       junos_ping:
-        host: "{{ ravello_public_ip.json.value }}"
+        host: "{{ junos_host }}"
         port: "{{ netconf_port }}"
         user: "{{ ansible_ssh_username }}"
         passwd: "{{ ansible_ssh_password }}"
