@@ -17,7 +17,7 @@ underlay:
         local_ip: "{{ p2p.link4.2 }}"
 
 junos_std_l3:
-    - name: xe-0/0/2
+    - name: em5
       units:
       - id: 0
         ip: 100.0.8.1

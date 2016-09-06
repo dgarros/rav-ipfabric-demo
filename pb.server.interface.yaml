@@ -1,6 +1,6 @@
 ---
 - hosts: server
-  # become: true
+  become: true
   # become_user: ubuntu
 
   # roles:
@@ -18,6 +18,21 @@
   #     netmask: "{{ mgmt_mask }}"
   #     #gateway: "{{ mgmt_gateway }}"
   tasks:
-  # - name: try nmcli add team - cname only & ip4 gw4
-  #   nmcli: type=ethernet cname=eth1 ip4={{mgmt_ip}} gw4={{mgmt_gateway}} state=present
+
+  - name: Update apt-get cache
+    apt: update_cache=yes cache_valid_time=3600
+
+  - name: Install Python PIP
+    apt: name=python-pip state=present
+
+  - name: Install dependancy (network-manager)
+    apt: name=network-manager state=present
+
+  - name: Install dependancy (dbus)
+    apt: name=python-dbus state=present
+
+  - pip: name=python-networkmanager
+
+  - name: Try nmcli add team - cname only & ip4 gw4
+    nmcli: type=ethernet cname=eth1 ip4={{eth1_ip}} state=present
   - command: route add -net 100.0.0.0 netmask 255.255.0.0 gw {{ default_gw }}
