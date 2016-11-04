@@ -7,7 +7,7 @@
   #   - include_vars: "{{ topology_file }}"
   vars:
     credential:
-      host: "{{ junos_host }}"
+      host: "{{ ansible_host }}"
       port: "{{ netconf_port }}"
       username: "{{ ansible_ssh_username }}"
       password: "{{ ansible_ssh_password }}"
@@ -21,7 +21,7 @@
 ##################################################################
     - name: "Check Connectivity using Ping (galaxy/junos_ping)"
       junos_ping:
-        host: "{{ junos_host }}"
+        host: "{{ ansible_host }}"
         port: "{{ netconf_port }}"
         user: "{{ ansible_ssh_username }}"
         passwd: "{{ ansible_ssh_password }}"
