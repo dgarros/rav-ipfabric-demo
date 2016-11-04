@@ -3,8 +3,6 @@
   hosts: junos
   connection: local
   gather_facts: no
-  vars:
-    ansible_python_interpreter: /usr/local/bin/python
   roles:
     - Juniper.junos
   tasks:

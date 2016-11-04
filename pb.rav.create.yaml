@@ -3,10 +3,9 @@
   connection: local
   hosts: junos,server
   gather_facts: no
+  serial: 1
   roles:
     - ravello.lib
     - ravello.application_create
-  vars:
-    ansible_python_interpreter: /usr/local/bin/python
   pre_tasks:
     - include_vars: user-input.yaml

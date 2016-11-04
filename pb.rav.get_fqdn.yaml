@@ -10,8 +10,7 @@
     - include_vars: user-input.yaml
   vars:
     ravello:
-      connectivity_check: false  
-    ansible_python_interpreter: /usr/local/bin/python
+      connectivity_check: false
   tasks:
     - name: Delete previous file
       file:
