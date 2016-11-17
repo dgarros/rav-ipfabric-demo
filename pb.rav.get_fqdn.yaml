@@ -9,8 +9,7 @@
   pre_tasks:
     - include_vars: user-input.yaml
   vars:
-    ravello:
-      connectivity_check: false
+    ravello_connectivity_check: false
   tasks:
     - name: Delete previous file
       file:
